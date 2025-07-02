@@ -20,7 +20,7 @@ Este proyecto es una aplicación **frontend desarrollada con Angular**.
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/tu-usuario/angular-app.git
+   git clone https://github.com/dyeyo/backDarien
    cd angular-app
    ```
 
@@ -52,8 +52,7 @@ Este proyecto es una aplicación **frontend desarrollada con Angular**.
 
 - **Angular v17+**
 - **RxJS**
-- **Angular Material** (si aplica)
-- **Tailwind CSS** (si fue añadido)
+- **Tailwind CSS** 
 - **Servicios HTTP** para consumo de APIs externas
 
 ---
@@ -63,13 +62,15 @@ Este proyecto es una aplicación **frontend desarrollada con Angular**.
 ```
 src/
 ├── app/
-│   ├── components/       # Componentes de la app
-│   ├── services/         # Servicios Angular
-│   ├── models/           # Modelos de datos
+│   ├── auth/       
+│   ├── components/ 
+│   ├── interfaces/      
+│   ├── services/        
+│   ├── pages/           
 │   └── ...               # Otros módulos
 ├── environments/
-│   ├── environment.ts            # Configuración por defecto
-│   └── environment.prod.ts       # Configuración para producción
+│   ├── environment.ts                   # Configuración por defecto
+│   └── environment.development.ts       # Configuración para producción
 angular.json                      # Configuración global del proyecto
 ```
 
@@ -80,13 +81,13 @@ angular.json                      # Configuración global del proyecto
 Las variables de entorno están en:
 
 ```
-src/environments/environment.ts
+src/environments/environment.development.ts
 ```
 
 Puedes tener diferentes configuraciones para otros entornos como:
 
 ```
-src/environments/environment.prod.ts
+src/environments/environment.ts
 ```
 
 ---
