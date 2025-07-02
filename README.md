@@ -1,3 +1,129 @@
-# Angular Frontend App
+# 🚀 Angular Frontend App
 
-Este proyecto es una aplicación frontend desarrollada con Angular. Para poder ejecutarlo correctamente necesitas tener instalado Node.js (v18.x o superior recomendado) y Angular CLI. Para instalar Angular CLI globalmente ejecuta `npm install -g @angular/cli`. Una vez clonado el proyecto con `git clone https://github.com/tu-usuario/angular-app.git`, accede a la carpeta con `cd angular-app` y ejecuta `npm install` para instalar todas las dependencias. Luego, inicia el servidor de desarrollo con `ng serve`, lo cual compilará el proyecto y lo abrirá en el navegador en la URL por defecto `http://localhost:4200`. Si necesitas especificar un puerto distinto puedes usar `ng serve --port=4300`. Las tecnologías utilizadas en este proyecto incluyen Angular v17+, RxJS, Angular Material (si aplica), Tailwind CSS (si fue añadido), así como servicios HTTP para consumir APIs externas. La estructura del proyecto sigue la convención estándar de Angular con componentes en la carpeta `src/app`, servicios en `src/app/services`, modelos en `src/app/models`, y módulos si el proyecto está modularizado. El archivo `angular.json` contiene la configuración general del proyecto. Las variables de entorno se configuran en `src/environments/environment.ts` y puedes tener otras configuraciones por entorno como `environment.prod.ts`. Este proyecto no tiene pruebas unitarias configuradas por el momento. Si deseas construir para producción, ejecuta `ng build --configuration production`, lo cual generará los archivos en la carpeta `dist/`. Para más detalles sobre Angular, visita la documentación oficial en [https://angular.io](https://angular.io). Proyecto creado por **Diego Vallejo**. Contacto: <diego@example.com>. Repositorio: `https://github.com/tu-usuario/angular-app`.
+Este proyecto es una aplicación **frontend desarrollada con Angular**.
+
+---
+
+## 📦 Requisitos Previos
+
+- **Node.js**: v18.x o superior (recomendado)
+- **Angular CLI**: Para instalarlo globalmente, ejecuta:
+
+  ```bash
+  npm install -g @angular/cli
+  ```
+
+---
+
+## 🔧 Instalación y Ejecución
+
+1. **Clona el repositorio**:
+
+   ```bash
+   git clone https://github.com/tu-usuario/angular-app.git
+   cd angular-app
+   ```
+
+2. **Instala las dependencias**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Inicia el servidor de desarrollo**:
+
+   ```bash
+   ng serve
+   ```
+
+   Esto compilará el proyecto y abrirá la aplicación en tu navegador en:  
+   👉 `http://localhost:4200`
+
+4. **¿Necesitas otro puerto?**  
+   Usa:
+
+   ```bash
+   ng serve --port=4300
+   ```
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Angular v17+**
+- **RxJS**
+- **Angular Material** (si aplica)
+- **Tailwind CSS** (si fue añadido)
+- **Servicios HTTP** para consumo de APIs externas
+
+---
+
+## 🗂️ Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── components/       # Componentes de la app
+│   ├── services/         # Servicios Angular
+│   ├── models/           # Modelos de datos
+│   └── ...               # Otros módulos
+├── environments/
+│   ├── environment.ts            # Configuración por defecto
+│   └── environment.prod.ts       # Configuración para producción
+angular.json                      # Configuración global del proyecto
+```
+
+---
+
+## ⚙️ Variables de Entorno
+
+Las variables de entorno están en:
+
+```
+src/environments/environment.ts
+```
+
+Puedes tener diferentes configuraciones para otros entornos como:
+
+```
+src/environments/environment.prod.ts
+```
+
+---
+
+## 🧪 Pruebas
+
+> 🔒 **Este proyecto no tiene pruebas unitarias configuradas por el momento.**
+
+---
+
+## 🏗️ Construcción para Producción
+
+Para compilar el proyecto para producción, ejecuta:
+
+```bash
+ng build --configuration production
+```
+
+Los archivos generados se ubicarán en la carpeta:
+
+```
+dist/
+```
+
+---
+
+## 📚 Documentación
+
+Para más información sobre Angular, visita la documentación oficial:  
+👉 [https://angular.io](https://angular.io)
+
+---
+
+## 👤 Autor
+
+**Diego Vallejo**  
+📧 Contacto: [diegovallejob@gmail.com](mailto:diegovallejob@gmail.com)  
+🔗 Repositorio: [hhttps://github.com/dyeyo](hhttps://github.com/dyeyo)
+
+---
