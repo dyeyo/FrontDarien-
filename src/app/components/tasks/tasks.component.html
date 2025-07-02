@@ -1,0 +1,18 @@
+<main class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Card ejemplo -->
+  <div class="bg-white p-4 rounded-xl shadow-sm">
+    <div class="text-sm text-gray-500">Tareas pendietes</div>
+    <div class="text-2xl font-bold">{{ countPending }}</div>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm">
+    <div class="text-sm text-gray-500">Tareas terminadas</div>
+    <div class="text-2xl font-bold">{{ countComplete }}</div>
+  </div>
+</main>
+<app-table
+  [list]="listTask"
+  [loader]="isLoading"
+  (onSubmit)="getTasks($event)"
+  (delete)="deleteTask($event)"
+  (numberChangePage)="getTasks($event)"
+></app-table>

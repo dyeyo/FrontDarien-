@@ -1,0 +1,78 @@
+<div class="flex h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <div
+    class="fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-md transform transition-transform duration-200 ease-in-out md:translate-x-0 md:relative md:z-auto"
+    [class.-translate-x-full]="!showSidebar"
+  >
+    <div class="p-4 font-bold text-xl border-b">Mi Panel</div>
+    <nav class="p-4 space-y-2">
+      <a
+        routerLink="/dashboard"
+        class="block px-4 py-2 rounded hover:bg-gray-200"
+        >Inicio</a
+      >
+    </nav>
+  </div>
+
+  <!-- Overlay para móvil -->
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+    *ngIf="showSidebar"
+    (click)="toggleSidebar()"
+  ></div>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header
+      class="bg-white shadow px-4 py-3 flex items-center justify-between md:justify-end"
+    >
+      <!-- Botón toggle sidebar -->
+      <button class="md:hidden text-gray-600" (click)="toggleSidebar()">
+        ☰
+      </button>
+      <div
+        class="relative"
+        (click)="toggleUserMenu()"
+        tabindex="0"
+        (blur)="closeUserMenu()"
+      >
+        <button
+          class="flex items-center gap-2 text-sm font-medium text-gray-700 focus:outline-none"
+        >
+          👤 Diego
+          <svg
+            class="w-4 h-4 text-gray-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          *ngIf="showUserMenu"
+          class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
+        >
+          <button
+            (click)="logout()"
+            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1 overflow-auto p-6">
+      <app-tasks></app-tasks>
+    </main>
+    <!-- Main -->
+  </div>
+</div>

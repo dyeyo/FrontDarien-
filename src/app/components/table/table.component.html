@@ -1,0 +1,208 @@
+<div class="w-full px-6 py-6 mx-auto">
+  <!-- table 1 -->
+
+  <div class="flex flex-wrap -mx-3">
+    <div class="flex-none w-full max-w-full px-3">
+      <div
+        class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border"
+      >
+        <div
+          class="flex flex-row justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent"
+        >
+          <h6 class="dark:text-gray-800">Lista de tareas</h6>
+          <button
+            class="px-2 py-2 border border-gray-400 rounded-lg hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out focus:outline-none"
+            (click)="abrirModal()"
+          >
+            Crear tarea
+          </button>
+        </div>
+        <div class="flex-auto px-0 pt-0 pb-2">
+          <div class="p-0 overflow-x-auto">
+            <table class="w-full mt-4 text-left table-auto min-w-max">
+              <thead>
+                <tr>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    >
+                      Usuario
+                    </p>
+                  </th>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    >
+                      Titulo
+                    </p>
+                  </th>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    >
+                      Descripción
+                    </p>
+                  </th>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    >
+                      Estado
+                    </p>
+                  </th>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    >
+                      Fecha vencimiento
+                    </p>
+                  </th>
+                  <th
+                    class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100"
+                  >
+                    <p
+                      class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500"
+                    ></p>
+                  </th>
+                </tr>
+              </thead>
+              <div
+              *ngIf="loader"
+                class="fixed inset-0 flex items-center justify-center bg-white/60 z-50"
+              >
+                <div
+                  class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"
+                ></div>
+              </div>
+              <tbody  *ngIf="!loader">
+                @for (task of listSignal(); track task.id) {
+                <tr>
+                  <td class="p-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                      <div class="flex flex-col">
+                        <p class="text-sm font-semibold text-slate-700">
+                          {{ task.user.name }}
+                        </p>
+                        <p class="text-sm text-slate-500">
+                          {{ task.user.email }}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-4 border-b border-slate-200">
+                    <div class="flex flex-col">
+                      <p class="text-sm font-semibold text-slate-700">
+                        {{ task.title | truncate : 20 : "..." }}
+                      </p>
+                    </div>
+                  </td>
+                  <td class="p-4 border-b border-slate-200">
+                    <div class="flex flex-col">
+                      <p class="text-sm text-slate-500">
+                        {{ task.description | truncate : 20 : "..." }}
+                      </p>
+                    </div>
+                  </td>
+                  <td class="p-4 border-bs">
+                    <div class="w-max">
+                      <div
+                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap"
+                      >
+                        @if (task.completed == 0) {
+                        <span
+                          class="p-2 rounded-md bg-gradient-to-tl from-yellow-500 to-yellow-200 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                          >Pendiete</span
+                        >
+                        }@else{
+                        <span
+                          class="p-2 rounded-md bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                          >Terminado</span
+                        >
+                        }
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-4 border-b border-slate-200">
+                    <p class="text-sm text-slate-500">{{ task.due_date }}</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200">
+                    <button
+                      (click)="abrirModalEditar(task)"
+                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button"
+                    >
+                      <span
+                        class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          class="w-4 h-4"
+                        >
+                          <path
+                            d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <button
+                      (click)="deleteTask(task.id)"
+                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button"
+                    >
+                      <span
+                        class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="red"
+                          viewBox="0 0 24 24"
+                          class="w-5 h-5"
+                        >
+                          <path
+                            d="M9 3V2a1 1 0 1 1 2 0v1h2V2a1 1 0 1 1 2 0v1h5a1 1 0 1 1 0 2h-1v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5H4a1 1 0 1 1 0-2h5Zm-2 4v12h10V7H7Zm2 2a1 1 0 1 1 2 0v8a1 1 0 1 1-2 0V9Zm4 0a1 1 0 1 1 2 0v8a1 1 0 1 1-2 0V9Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+            <div class="flex items-center justify-between p-3">
+              <div class="flex gap-1">
+                <button
+                  (click)="changePage(1)"
+                  class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  type="button"
+                >
+                  Anterior
+                </button>
+                <button
+                  (click)="changePage(-1)"
+                  class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  type="button"
+                >
+                  Siguiete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
