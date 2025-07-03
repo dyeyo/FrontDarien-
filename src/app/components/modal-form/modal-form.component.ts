@@ -73,7 +73,7 @@ export class ModalFormComponent implements OnInit {
       this.service.updateTask(id, this.taskForm.value).subscribe({
         next: (response) => {
           this.activeModal.close('success');
-          flashy.success('¡Tarea creada exitosamente!');
+          flashy.success('¡Tarea actualizada exitosamente!');
           this.taskForm.reset();
         },
         error: (error) => {
